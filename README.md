@@ -11,22 +11,21 @@ date := date.Format("Y-m-d", time.Now())
 ```
 
 ## identity
-用于解析身份证号码中的信息,年龄、性别、省份代码、城市代码和地区代码,根据地区代码获取地区名称
+> 用于解析身份证号码中的信息,年龄、性别、省份代码、城市代码和地区代码,根据地区代码获取地区名称
 
-
-## 使用文档
 ```go
 package main
 
 import (
 	"time"
 	"fmt"
+	"github.com/qq1060656096/tools/age"
+	"github.com/qq1060656096/tools/date"
 	"github.com/qq1060656096/tools/identity"
 )
 
 func main() {
-	id := identity.New("511521198305075558")
-	err := id.Parse()
+	id, err := identity.New("511521198305075558")
 	// 解析错误
 	if err != nil {
 		fmt.Println(err)
@@ -60,10 +59,10 @@ func main() {
 	}
 	
 	// 获取年龄
-	AgeAt(id.GetBirthdayTime(), time.Date(2019, 3, 6, 0, 0, 0, 0, time.UTC))
-	Age(id.GetBirthdayTime())
+	age.At(id.GetBirthdayTime(), time.Date(2019, 3, 6, 0, 0, 0, 0, time.UTC))
+	age.Get(id.GetBirthdayTime())
 	// 检测出生日是不是闰年
-	IsLeapYear(id.GetBirthdayTime())
+	date.IsLeapYear(id.GetBirthdayTime())
 }
 
 ```

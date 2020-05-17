@@ -1,6 +1,7 @@
 package age
 
 import (
+	"github.com/qq1060656096/tools/date"
 	"time"
 )
 
@@ -19,15 +20,6 @@ func Get(birthdayTime time.Time) int {
 }
 
 // IsLeapYear 检测日期是否是闰年
-func IsLeapYear(date time.Time) bool {
-	y := date.Year()
-	switch {
-	case y%400 == 0:
-		return true
-	case y%100 == 0:
-		return true
-	case y%4 == 0:
-		return true
-	}
-	return false
+func IsLeapYear(t time.Time) bool {
+	return date.IsLeapYear(t)
 }
