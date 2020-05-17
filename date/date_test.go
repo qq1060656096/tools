@@ -40,5 +40,5 @@ func TestDays(t *testing.T) {
 	// 2021-05-06 07:09:08
 	tm := time.Unix(1620256148, 0)
 	days := Days(tm)
-	assert.Equal(t, 25, days)
+	assert.Equal(t, 31, days)
 }
