@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"github.com/qq1060656096/err"
+	er "github.com/qq1060656096/err"
 )
 
 const (
@@ -114,20 +114,20 @@ func (id *Identity) setBitType() error {
 		newData = id.data[0:17]
 		_, err := strconv.ParseUint(newData, 10, 64)
 		if err != nil {
-			return err.CopyErrWithCause(ErrBitType18, err)
+			return er.CopyErrWithCause(*ErrBitType18, err)
 		}
 		if strings.ToUpper(string(id.data[17])) != "X" && (id.data[17]  < '0' || id.data[17] > '9') {
-			return err.CopyErrWithCause(ErrBitType18LastBit, nil)
+			return er.CopyErrWithCause(*ErrBitType18LastBit, nil)
 
 		}
 	case BitType15:
 		newData = id.data
 		_, err := strconv.ParseUint(newData, 10, 64)
 		if err != nil {
-			return err.CopyErrWithCause(ErrBitType15, err)
+			return er.CopyErrWithCause(*ErrBitType15, err)
 		}
 	default:
-		return err.CopyErrWithCause(ErrBitTypeNotFound, nil)
+		return er.CopyErrWithCause(*ErrBitTypeNotFound, nil)
 	}
 	return nil
 }
@@ -185,7 +185,7 @@ func (id *Identity) setBirthday() error {
 	v := id.dataMap[Birthday].(string)
 	t, err := time.Parse("2006-01-02", fmt.Sprintf("%s-%s-%s", v[0:4], v[4:6], v[6:8]))
 	if err != nil {
-		return err.CopyErrWithCause(ErrBirthday, err)
+		return er.CopyErrWithCause(*ErrBirthday, err)
 	}
 	id.dataMap[BirthdayTime] = t
 	return nil
