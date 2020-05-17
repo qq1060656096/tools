@@ -1,7 +1,6 @@
 package date
 
 import (
-	"fmt"
 	"strings"
 	"time"
 )
@@ -56,7 +55,6 @@ func Replace(format string) string {
 
 func Format(format string, t time.Time) string {
 	toFormat := Replace(format)
-	fmt.Println(toFormat)
 	return t.Format(toFormat)
 }
 
@@ -67,4 +65,24 @@ func Parse(format string, date string) (t time.Time, err error) {
 
 func Now(format string) string {
 	return Format(format, time.Now())
+}
+
+
+// IsLeapYear 检测日期是否是闰年
+func IsLeapYear(t time.Time) bool {
+	y := t.Year()
+	switch {
+	case y%400 == 0:
+		return true
+	case y%100 == 0:
+		return true
+	case y%4 == 0:
+		return true
+	}
+	return false
+}
+
+func Days(t time.Time) int {
+	t = t.AddDate(0, 1, -t.Day())
+	return t.Day()
 }
