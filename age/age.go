@@ -7,7 +7,7 @@ import (
 // At 获取特定时间之间的年龄
 func At(birthDate time.Time, nowDate time.Time) int {
 	age := nowDate.Year() - birthDate.Year()
-	if nowDate.Month() <= birthDate.Month() && nowDate.Day() < birthDate.Day(){
+	if nowDate.Month() <= birthDate.Month() && nowDate.Day() < birthDate.Day() {
 		age -= 1
 	}
 	return age
@@ -22,11 +22,11 @@ func Get(birthdayTime time.Time) int {
 func IsLeapYear(date time.Time) bool {
 	y := date.Year()
 	switch {
-	case y % 400 == 0:
+	case y%400 == 0:
 		return true
-	case y % 100 == 0:
+	case y%100 == 0:
 		return true
-	case y % 4 == 0:
+	case y%4 == 0:
 		return true
 	}
 	return false

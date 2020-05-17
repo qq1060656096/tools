@@ -2,10 +2,10 @@ package identity
 
 import (
 	"fmt"
+	er "github.com/qq1060656096/err"
 	"strconv"
 	"strings"
 	"time"
-	er "github.com/qq1060656096/err"
 )
 
 const (
@@ -41,18 +41,18 @@ const (
 	// 15位身份证
 	BitType15 = 15
 )
+
 type Identity struct {
-	data string
-	len int
+	data    string
+	len     int
 	dataMap map[string]interface{}
 }
-
 
 // New 新的指针指向Identity
 func New(data string) (id *Identity, err error) {
 	id = &Identity{
-		data: data,
-		len: len(data),
+		data:    data,
+		len:     len(data),
 		dataMap: make(map[string]interface{}),
 	}
 	err = id.parse()
@@ -116,7 +116,7 @@ func (id *Identity) setBitType() error {
 		if err != nil {
 			return er.CopyErrWithCause(*ErrBitType18, err)
 		}
-		if strings.ToUpper(string(id.data[17])) != "X" && (id.data[17]  < '0' || id.data[17] > '9') {
+		if strings.ToUpper(string(id.data[17])) != "X" && (id.data[17] < '0' || id.data[17] > '9') {
 			return er.CopyErrWithCause(*ErrBitType18LastBit, nil)
 
 		}
@@ -145,7 +145,7 @@ func (id *Identity) setProvince() error {
 }
 
 // 获取省份
-func (id *Identity) GetProvince()  interface{} {
+func (id *Identity) GetProvince() interface{} {
 	v := id.dataMap[Province]
 	return v
 }
@@ -207,7 +207,7 @@ func (id *Identity) GetBirthdayTime() time.Time {
 func (id *Identity) setSex() error {
 	id.dataMap[Sex] = SexFemale
 	s := id.GetSequenceCode().(string)
-	if s[2] % 2 == 1 {
+	if s[2]%2 == 1 {
 		id.dataMap[Sex] = SexMale
 	}
 	return nil
@@ -235,7 +235,6 @@ func (id *Identity) GetSequenceCode() interface{} {
 	v := id.dataMap[SequenceCode]
 	return v
 }
-
 
 // setVerifyCode 设置效验码
 func (id *Identity) setVerifyCode() error {

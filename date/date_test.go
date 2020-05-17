@@ -9,31 +9,29 @@ import (
 func TestFormat(t *testing.T) {
 	// 2021-05-06 07:09:08
 	tm := time.Unix(1620256148, 0)
-	date := Format("YYYY-MM-DD hh:mm:ss", tm)
+	date := Format("Y-m-d h:i:s", tm)
 	assert.Equal(t, "2021-05-06 07:09:08", date)
 
-	date = Format("YYYY", tm)
+	date = Format("Y", tm)
 	assert.Equal(t, "2021", date)
-	date = Format("YY", tm)
+	date = Format("y", tm)
 	assert.Equal(t, "21", date)
 
-	date = Format("MM", tm)
+	date = Format("m", tm)
 	assert.Equal(t, "05", date)
 
-	date = Format("M", tm)
+	date = Format("n", tm)
 	assert.Equal(t, "5", date)
 
-	date = Format("DD", tm)
+	date = Format("d", tm)
 	assert.Equal(t, "06", date)
-	date = Format("D", tm)
-	assert.Equal(t, "6", date)
 
-	date = Format("hh", tm)
+	date = Format("H", tm)
 	assert.Equal(t, "07", date)
 
-	date = Format("mm", tm)
+	date = Format("i", tm)
 	assert.Equal(t, "09", date)
 
-	date = Format("ss", tm)
+	date = Format("s", tm)
 	assert.Equal(t, "08", date)
 }

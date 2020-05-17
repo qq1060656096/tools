@@ -1,13 +1,13 @@
 package identity
 
 import (
+	"github.com/qq1060656096/tools/age"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
-	"github.com/qq1060656096/tools/age"
 )
 
-var tests = map[string]string {
+var tests = map[string]string{
 	"18": "511521198602035558",
 	"15": "511521860203555",
 }
@@ -19,7 +19,7 @@ func TestNew15(t *testing.T) {
 	assert.Equal(t, err, nil)
 	assert.Equal(t, id.GetProvince(), "51")
 	assert.Equal(t, id.GetCity(), "15")
-	assert.Equal(t, id. GetArea(), "21")
+	assert.Equal(t, id.GetArea(), "21")
 
 	assert.Equal(t, id.GetBirthday(), "19860203")
 	assert.Equal(t, id.GetSex(), SexMale)
@@ -39,7 +39,7 @@ func TestNew18(t *testing.T) {
 	assert.Equal(t, err, nil)
 	assert.Equal(t, id.GetProvince(), "51")
 	assert.Equal(t, id.GetCity(), "15")
-	assert.Equal(t, id. GetArea(), "21")
+	assert.Equal(t, id.GetArea(), "21")
 
 	assert.Equal(t, id.GetBirthday(), "19860203")
 	assert.Equal(t, id.GetSex(), SexMale)
